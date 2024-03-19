@@ -18,6 +18,18 @@
           return originalfetch(url, data);
       };
       </script> -->
+      <script>
+        fetch = function( url,data) {
+               console.log("url received: " + url);
+               if (url.indexOf('https://voller-u.github.io/Web_Test_Prj/') === 0 || url.indexOf('http://localhost:4000') === 0 || url.indexOf('http://127.0.0.1:4000') === 0) {
+                 data = {...data, ...{credentials : "include"}};
+                 console.log("withCredentials set to true " + JSON.stringify(data) + " url: " + url );
+               }  else {
+                 console.log("withCredentials NOT SET for URL: " + url);
+               }
+               return originalfetch(url,data);
+             };
+       </script>
       
   </head>
   <body>
