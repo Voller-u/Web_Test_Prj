@@ -6,6 +6,19 @@
     <title>Unity WebGL Player | Gomoku</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script>
+      fetch = function(url, data) {
+          console.log("url received: " + url);
+          if (url.indexOf("yourserveraddress.com") === 0 || url.indexOf("localhost:4000") === 0 || url.indexOf("127.0.0.1:4000") === 0) {
+              data = {...data, ...{credentials: "include"}};
+              console.log("withCredentials set to true " + JSON.stringify(data) + " url: " + url);
+          } else {
+              console.log("withCredentials NOT SET for URL: " + url);
+          }
+          return originalfetch(url, data);
+      };
+      </script>
+      
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
